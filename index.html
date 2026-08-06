@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kidtech Compucare | Piso Net, Piso Wifi &amp; GCash Machines</title>
+<meta name="description" content="Kidtech Compucare supplies durable, ready-to-earn Piso Net, Piso Wifi, and GCash cash-in machines with expert setup and technical support.">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="#top">
+      <img src="assets/logo.png" alt="Kidtech Compucare logo" class="brand-mark">
+      <span class="brand-name">KIDTECH<br><em>COMPUCARE</em></span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <a href="#machines">Machines</a>
+      <a href="#how">How It Works</a>
+      <a href="#why">Why Us</a>
+      <a href="#quote" class="nav-cta">Get a Quote</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-stripes"></div>
+    <div class="hero-dots"></div>
+  </div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <p class="eyebrow">Piso Net &middot; Piso Wifi &middot; GCash Machines</p>
+      <h1>Every Coin Earns.<br><span class="accent">Every Peso Counts.</span></h1>
+      <p class="hero-sub">Kidtech Compucare builds and supplies coin-operated internet, wifi, and GCash cash-in machines &mdash; solid units, honest setup, and real support after the sale.</p>
+      <div class="hero-actions">
+        <a href="#machines" class="btn btn-primary">View Machines</a>
+        <a href="#quote" class="btn btn-outline">Get a Quote</a>
+      </div>
+      <ul class="hero-stats">
+        <li><strong>3</strong><span>machine types</span></li>
+        <li><strong>24/7</strong><span>tech support</span></li>
+        <li><strong>₱1</strong><span>starts the earning</span></li>
+      </ul>
+    </div>
+
+    <div class="hero-coin-widget" id="coinWidget">
+      <p class="coin-widget-label">Try it &mdash; insert a coin</p>
+      <div class="coin-machine" id="coinMachine" role="button" tabindex="0" aria-label="Insert a coin to see how the machine responds">
+        <div class="coin-slot"></div>
+        <div class="coin" id="coin">₱1</div>
+        <div class="coin-screen">
+          <span class="coin-screen-line" id="coinStatus">INSERT COIN TO START</span>
+          <span class="coin-screen-line coin-screen-timer" id="coinTimer">00:00:00</span>
+        </div>
+      </div>
+      <p class="coin-widget-hint">Tap the coin. This is exactly how your customers will see it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MACHINES ============ -->
+<section class="machines" id="machines">
+  <div class="wrap">
+    <p class="eyebrow eyebrow-dark">The Lineup</p>
+    <h2>Three machines. One earning engine.</h2>
+
+    <div class="machine-grid">
+
+      <article class="machine-card">
+        <div class="machine-art" aria-hidden="true">
+          <svg viewBox="0 0 200 200" class="machine-svg">
+            <rect x="55" y="20" width="90" height="150" rx="8" class="svg-body"/>
+            <rect x="65" y="32" width="70" height="46" rx="3" class="svg-screen"/>
+            <circle cx="100" cy="120" r="14" class="svg-slot-ring"/>
+            <rect x="94" y="112" width="12" height="16" rx="2" class="svg-slot"/>
+            <rect x="70" y="145" width="60" height="6" rx="3" class="svg-vent"/>
+            <rect x="70" y="155" width="60" height="6" rx="3" class="svg-vent"/>
+          </svg>
+        </div>
+        <div class="machine-body">
+          <span class="machine-tag">01 &middot; Internet</span>
+          <h3>Piso Net Machine</h3>
+          <p>A coin-fed internet station built for sari-sari stores, waiting sheds, and terminals. Steel-reinforced casing, per-minute browsing, and a screen that's hard to tamper with.</p>
+          <ul class="machine-specs">
+            <li>Reinforced steel enclosure &amp; coin slot</li>
+            <li>Configurable per-minute or per-hour rates</li>
+            <li>Single or dual monitor setup</li>
+            <li>Session auto-cutoff, no manual timing</li>
+          </ul>
+          <a href="#quote" class="btn btn-primary btn-block">Inquire About This Unit</a>
+        </div>
+      </article>
+
+      <article class="machine-card machine-card-featured">
+        <div class="machine-art" aria-hidden="true">
+          <svg viewBox="0 0 200 200" class="machine-svg">
+            <rect x="40" y="60" width="120" height="80" rx="10" class="svg-body"/>
+            <circle cx="100" cy="100" r="26" class="svg-screen"/>
+            <path d="M84 100a16 16 0 0 1 32 0" class="svg-wifi-arc"/>
+            <path d="M78 100a22 22 0 0 1 44 0" class="svg-wifi-arc svg-wifi-arc-2"/>
+            <circle cx="100" cy="112" r="3.5" class="svg-wifi-dot"/>
+            <rect x="94" y="140" width="12" height="16" rx="2" class="svg-slot"/>
+          </svg>
+        </div>
+        <div class="machine-body">
+          <span class="machine-tag">02 &middot; Wifi Vendo</span>
+          <h3>Piso Wifi Vendo</h3>
+          <p>Our most requested unit. A compact coin box that turns any load-based connection into a walk-up wifi business, with a captive portal your customers already know how to use.</p>
+          <ul class="machine-specs">
+            <li>Custom captive portal, your branding</li>
+            <li>Adjustable time-per-coin ratios</li>
+            <li>Coin box with tamper-evident lock</li>
+            <li>Works with prepaid or postpaid lines</li>
+          </ul>
+          <a href="#quote" class="btn btn-primary btn-block">Inquire About This Unit</a>
+        </div>
+        <span class="featured-badge">Most Requested</span>
+      </article>
+
+      <article class="machine-card">
+        <div class="machine-art" aria-hidden="true">
+          <svg viewBox="0 0 200 200" class="machine-svg">
+            <rect x="50" y="25" width="100" height="150" rx="10" class="svg-body"/>
+            <rect x="62" y="38" width="76" height="52" rx="3" class="svg-screen"/>
+            <rect x="72" y="100" width="56" height="14" rx="3" class="svg-vent"/>
+            <rect x="72" y="120" width="56" height="14" rx="3" class="svg-vent"/>
+            <rect x="82" y="145" width="36" height="10" rx="2" class="svg-slot"/>
+          </svg>
+        </div>
+        <div class="machine-body">
+          <span class="machine-tag">03 &middot; E-Wallet</span>
+          <h3>GCash Cash-in Machine</h3>
+          <p>A self-service kiosk for cash-in and cash-out transactions. Built for agents who want a faster line and a paper trail without a laptop and a notebook.</p>
+          <ul class="machine-specs">
+            <li>Cash-in / cash-out transaction flow</li>
+            <li>Automatic digital transaction log</li>
+            <li>Agent verification &amp; PIN lock</li>
+            <li>Bill acceptor with counterfeit checks</li>
+          </ul>
+          <a href="#quote" class="btn btn-primary btn-block">Inquire About This Unit</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="how" id="how">
+  <div class="wrap">
+    <p class="eyebrow">The Process</p>
+    <h2>From order to earning, in three moves.</h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <span class="how-num">01</span>
+        <h3>Pick your machine</h3>
+        <p>Tell us your foot traffic and space &mdash; we recommend the unit and rate setup that fits.</p>
+      </div>
+      <div class="how-step">
+        <span class="how-num">02</span>
+        <h3>We install &amp; configure</h3>
+        <p>Our team sets up the hardware, the portal, and the rates on-site and tests every coin path.</p>
+      </div>
+      <div class="how-step">
+        <span class="how-num">03</span>
+        <h3>You earn, we support</h3>
+        <p>Start collecting coins from day one, with technical support on call whenever something needs a look.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY US ============ -->
+<section class="why" id="why">
+  <div class="wrap">
+    <p class="eyebrow eyebrow-dark">Why Kidtech Compucare</p>
+    <h2>Built solid. Backed properly.</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <svg class="why-icon" viewBox="0 0 48 48" fill="none"><path d="M24 4 40 10v12c0 11-7 18-16 22C15 40 8 33 8 22V10z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+        <h3>Quality Builds</h3>
+        <p>Steel-reinforced enclosures and industrial-grade coin mechanisms made for high foot traffic.</p>
+      </div>
+      <div class="why-item">
+        <svg class="why-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="7" stroke="currentColor" stroke-width="2.5"/><path d="M24 4v6M24 38v6M44 24h-6M10 24H4M37.6 10.4l-4.2 4.2M14.6 33.4l-4.2 4.2M37.6 37.6l-4.2-4.2M14.6 14.6l-4.2-4.2" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <h3>Expert Setup</h3>
+        <p>Rates, portals, and hardware configured on-site by people who install these every week.</p>
+      </div>
+      <div class="why-item">
+        <svg class="why-icon" viewBox="0 0 48 48" fill="none"><path d="M9 26v-4a15 15 0 0 1 30 0v4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><rect x="4" y="26" width="9" height="12" rx="3" stroke="currentColor" stroke-width="2.5"/><rect x="35" y="26" width="9" height="12" rx="3" stroke="currentColor" stroke-width="2.5"/></svg>
+        <h3>Technical Support</h3>
+        <p>A jammed coin slot or a portal glitch gets a real answer, not a ticket number.</p>
+      </div>
+      <div class="why-item">
+        <svg class="why-icon" viewBox="0 0 48 48" fill="none"><path d="M15 24l6 6 12-14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="24" cy="24" r="20" stroke="currentColor" stroke-width="2.5"/></svg>
+        <h3>Operators Trust Us</h3>
+        <p>Repeat orders from operators who came back for their second and third machine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE FORM ============ -->
+<section class="quote" id="quote">
+  <div class="wrap quote-wrap">
+    <div class="quote-copy">
+      <p class="eyebrow eyebrow-dark">Get a Quote</p>
+      <h2>Tell us about your setup.</h2>
+      <p class="quote-sub">Send your details and the machine you're eyeing &mdash; we'll get back to you with pricing and lead time.</p>
+      <div class="quote-contact">
+        <a href="mailto:hello@kidtechcompucare.com">hello@kidtechcompucare.com</a>
+        <a href="tel:+639000000000">+63 900 000 0000</a>
+      </div>
+    </div>
+
+    <form class="quote-form" id="quoteForm" novalidate>
+      <div class="form-row">
+        <label for="fName">Full name</label>
+        <input type="text" id="fName" name="name" required autocomplete="name">
+      </div>
+      <div class="form-row">
+        <label for="fContact">Contact number</label>
+        <input type="tel" id="fContact" name="contact" required autocomplete="tel">
+      </div>
+      <div class="form-row">
+        <label for="fLocation">Business location</label>
+        <input type="text" id="fLocation" name="location" required autocomplete="address-level2">
+      </div>
+      <div class="form-row">
+        <label for="fMachine">Machine you're interested in</label>
+        <select id="fMachine" name="machine" required>
+          <option value="" disabled selected>Choose a machine</option>
+          <option value="Piso Net Machine">Piso Net Machine</option>
+          <option value="Piso Wifi Vendo">Piso Wifi Vendo</option>
+          <option value="GCash Cash-in Machine">GCash Cash-in Machine</option>
+          <option value="Not sure yet">Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-row form-row-full">
+        <label for="fMessage">Message (optional)</label>
+        <textarea id="fMessage" name="message" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block form-submit">Send Inquiry</button>
+      <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <img src="assets/logo.png" alt="Kidtech Compucare logo" class="footer-mark">
+      <span>KIDTECH COMPUCARE</span>
+    </div>
+    <div class="footer-links">
+      <a href="#machines">Machines</a>
+      <a href="#how">How It Works</a>
+      <a href="#why">Why Us</a>
+      <a href="#quote">Get a Quote</a>
+    </div>
+    <p class="footer-copy">&copy; <span id="year"></span> Kidtech Compucare. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
