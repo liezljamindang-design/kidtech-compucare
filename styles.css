@@ -1,5 +1,5 @@
 /* ============================================
-   Kidtech Compucare — Design Tokens
+   Kidtech Compucare - Design Tokens
    ============================================ */
 :root{
   --orange:#FF6A00;
@@ -208,7 +208,7 @@ p{ margin:0; }
 .hero-stats strong{ font-family:var(--font-display); font-size:24px; color:var(--orange-light); }
 .hero-stats span{ font-size:12px; color:#a9a9a9; text-transform:uppercase; letter-spacing:0.04em; }
 
-/* Coin widget — signature interaction */
+/* Coin widget - signature interaction */
 .hero-coin-widget{
   justify-self:center;
   text-align:center;
