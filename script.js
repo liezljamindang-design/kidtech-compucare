@@ -11,11 +11,13 @@
   if (navToggle && mainNav) {
     navToggle.addEventListener("click", function () {
       var isOpen = mainNav.classList.toggle("is-open");
+      navToggle.classList.toggle("is-active", isOpen);
       navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
     mainNav.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () {
         mainNav.classList.remove("is-open");
+        navToggle.classList.remove("is-active");
         navToggle.setAttribute("aria-expanded", "false");
       });
     });
@@ -81,36 +83,68 @@
     });
   }
 
-  /* ---------- Inquiry form (front-end only) ---------- */
-  var quoteForm = document.getElementById("quoteForm");
-  var formStatus = document.getElementById("formStatus");
+  /* ---------- FAQ accordion ---------- */
+  var faqItems = document.querySelectorAll(".faq-item");
+  faqItems.forEach(function (item) {
+    var question = item.querySelector(".faq-question");
+    if (!question) return;
+    question.addEventListener("click", function () {
+      var isOpen = item.classList.contains("is-open");
 
-  if (quoteForm) {
-    quoteForm.addEventListener("submit", function (e) {
-      e.preventDefault();
+      // Close all other items (single-open accordion)
+      faqItems.forEach(function (other) {
+        other.classList.remove("is-open");
+        var otherQuestion = other.querySelector(".faq-question");
+        if (otherQuestion) otherQuestion.setAttribute("aria-expanded", "false");
+      });
 
-      var name = quoteForm.name.value.trim();
-      var contact = quoteForm.contact.value.trim();
-      var location = quoteForm.location.value.trim();
-      var machine = quoteForm.machine.value;
-
-      if (!name || !contact || !location || !machine) {
-        formStatus.textContent = "Please fill in all required fields.";
-        formStatus.classList.add("is-error");
-        return;
+      if (!isOpen) {
+        item.classList.add("is-open");
+        question.setAttribute("aria-expanded", "true");
       }
-
-      formStatus.classList.remove("is-error");
-      formStatus.textContent = "Sending...";
-
-      // NOTE: This is a front-end demo only. Wire this up to your backend,
-      // form service (e.g. Formspree), or email API to actually receive inquiries.
-      setTimeout(function () {
-        formStatus.textContent =
-          "Thanks, " + name.split(" ")[0] + "! We got your inquiry about the " +
-          machine + " and will reach out at " + contact + " soon.";
-        quoteForm.reset();
-      }, 500);
     });
+  });
+
+  /* ---------- Motion: reduced-motion check ---------- */
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- Motion: hero entrance ---------- */
+  if (!prefersReducedMotion) {
+    document.body.classList.add("js-hero-animate");
+  }
+
+  /* ---------- Motion: scroll-reveal ---------- */
+  var revealTargets = document.querySelectorAll(
+    ".service-card, .why-item, .faq-item, .negosyo, .how-step, .visit-copy, .visit-map, .delivery-inner, .final-cta-inner, .section-heading"
+  );
+
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    // No motion preferred, or unsupported browser: show everything immediately.
+    revealTargets.forEach(function (el) { el.classList.add("is-revealed"); });
+  } else {
+    revealTargets.forEach(function (el, index) {
+      el.classList.add("reveal");
+      // Stagger cards/items that share a row so they don't all pop at once.
+      var group = el.closest(".service-grid, .why-grid, .faq-list, .how-steps");
+      if (group) {
+        var siblings = Array.prototype.slice.call(group.children);
+        var posInGroup = siblings.indexOf(el);
+        el.style.transitionDelay = (Math.min(posInGroup, 5) * 90) + "ms";
+      }
+    });
+
+    var revealObserver = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-revealed");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+    );
+
+    revealTargets.forEach(function (el) { revealObserver.observe(el); });
   }
 })();

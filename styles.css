@@ -50,6 +50,62 @@ p{ margin:0; }
 }
 
 /* ============================================
+   Motion — hero entrance
+   ============================================ */
+.js-hero-animate .hero-copy .eyebrow,
+.js-hero-animate .hero-copy h1,
+.js-hero-animate .hero-copy .hero-sub,
+.js-hero-animate .hero-copy .hero-actions,
+.js-hero-animate .hero-copy .hero-stats,
+.js-hero-animate .hero-coin-widget{
+  opacity:0;
+  animation:heroRise 0.7s ease forwards;
+}
+.js-hero-animate .hero-copy .eyebrow{ animation-delay:0.05s; }
+.js-hero-animate .hero-copy h1{ animation-delay:0.15s; }
+.js-hero-animate .hero-copy .hero-sub{ animation-delay:0.28s; }
+.js-hero-animate .hero-copy .hero-actions{ animation-delay:0.4s; }
+.js-hero-animate .hero-copy .hero-stats{ animation-delay:0.52s; }
+.js-hero-animate .hero-coin-widget{ animation-delay:0.35s; }
+
+@keyframes heroRise{
+  from{ opacity:0; transform:translateY(18px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+/* ============================================
+   Motion — scroll reveal
+   ============================================ */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.is-revealed{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* ============================================
+   Motion — coin machine idle pulse
+   ============================================ */
+.coin-machine::after{
+  content:'';
+  position:absolute;
+  inset:-2px;
+  border-radius:18px;
+  border:1.5px solid var(--orange);
+  opacity:0;
+  animation:coinPulse 2.8s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes coinPulse{
+  0%{ opacity:0.35; transform:scale(1); }
+  70%{ opacity:0; transform:scale(1.04); }
+  100%{ opacity:0; transform:scale(1.04); }
+}
+
+/* ============================================
    Buttons
    ============================================ */
 .btn{
@@ -74,6 +130,7 @@ p{ margin:0; }
   box-shadow:0 8px 20px rgba(255,106,0,0.35);
 }
 .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(255,106,0,0.45); }
+.btn:active{ transform:scale(0.96); }
 .btn-outline{
   background:transparent;
   border-color:var(--orange);
@@ -115,8 +172,18 @@ p{ margin:0; }
   text-transform:uppercase;
   color:var(--white);
   opacity:0.85;
+  position:relative;
   transition:opacity 0.15s ease, color 0.15s ease;
 }
+.main-nav a:not(.nav-cta)::after{
+  content:'';
+  position:absolute;
+  left:0; right:100%; bottom:-6px;
+  height:2px;
+  background:var(--orange-light);
+  transition:right 0.25s ease;
+}
+.main-nav a:not(.nav-cta):hover::after{ right:0; }
 .main-nav a:hover{ opacity:1; color:var(--orange-light); }
 .main-nav a.nav-cta{
   background:var(--orange);
@@ -136,7 +203,10 @@ p{ margin:0; }
   cursor:pointer;
   padding:8px;
 }
-.nav-toggle span{ width:24px; height:2px; background:var(--white); display:block; transition:transform 0.2s ease, opacity 0.2s ease; }
+.nav-toggle span{ width:24px; height:2px; background:var(--white); display:block; transition:transform 0.25s ease, opacity 0.25s ease; }
+.nav-toggle.is-active span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+.nav-toggle.is-active span:nth-child(2){ opacity:0; }
+.nav-toggle.is-active span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
 
 /* ============================================
    Hero
@@ -338,8 +408,9 @@ p{ margin:0; }
 .service-card-featured .service-specs{ flex-basis:100%; max-width:70ch; }
 .service-card-featured .btn{ align-self:flex-start; width:auto; margin-top:6px; }
 
-.service-icon{ width:34px; height:34px; color:var(--orange); }
+.service-icon{ width:34px; height:34px; color:var(--orange); transition:transform 0.25s ease; }
 .service-icon svg{ width:100%; height:100%; }
+.service-card:hover .service-icon{ transform:scale(1.12) rotate(-4deg); }
 .service-tag{
   font-family:var(--font-display);
   font-size:11px;
@@ -428,7 +499,8 @@ p{ margin:0; }
   transition:border-color 0.2s ease, transform 0.2s ease;
 }
 .why-item:hover{ border-color:var(--orange); transform:translateY(-4px); }
-.why-icon{ width:34px; height:34px; color:var(--orange); margin-bottom:18px; }
+.why-icon{ width:34px; height:34px; color:var(--orange); margin-bottom:18px; transition:transform 0.25s ease; }
+.why-item:hover .why-icon{ transform:scale(1.12) rotate(-4deg); }
 .why-item h3{ font-size:16px; margin-bottom:10px; }
 .why-item p{ font-size:13.5px; line-height:1.6; color:#b7b7b7; }
 
