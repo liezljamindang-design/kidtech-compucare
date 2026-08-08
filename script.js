@@ -83,6 +83,68 @@
     });
   }
 
+  /* ---------- Service photo galleries (horizontal scroll) ---------- */
+  var galleries = document.querySelectorAll(".service-gallery");
+  galleries.forEach(function (gallery) {
+    var track = gallery.querySelector(".service-gallery-track");
+    var slides = track ? Array.prototype.slice.call(track.children) : [];
+    if (!track || slides.length < 2) return; // single placeholder slide: nothing to wire up
+
+    var prevBtn = gallery.querySelector(".gallery-arrow-prev");
+    var nextBtn = gallery.querySelector(".gallery-arrow-next");
+    var dotsWrap = gallery.querySelector(".gallery-dots");
+
+    // Build one dot per slide
+    var dots = slides.map(function (_, i) {
+      var dot = document.createElement("button");
+      dot.type = "button";
+      dot.className = "gallery-dot" + (i === 0 ? " is-active" : "");
+      dot.setAttribute("aria-label", "Go to photo " + (i + 1));
+      dot.addEventListener("click", function () {
+        slides[i].scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+      });
+      dotsWrap.appendChild(dot);
+      return dot;
+    });
+
+    function currentIndex() {
+      var scrollLeft = track.scrollLeft;
+      var width = track.clientWidth || 1;
+      return Math.round(scrollLeft / width);
+    }
+
+    function setActiveDot() {
+      var idx = Math.max(0, Math.min(dots.length - 1, currentIndex()));
+      dots.forEach(function (d, i) { d.classList.toggle("is-active", i === idx); });
+    }
+
+    function goTo(index) {
+      var clamped = Math.max(0, Math.min(slides.length - 1, index));
+      slides[clamped].scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+    }
+
+    if (prevBtn) {
+      prevBtn.hidden = false;
+      prevBtn.addEventListener("click", function () { goTo(currentIndex() - 1); });
+    }
+    if (nextBtn) {
+      nextBtn.hidden = false;
+      nextBtn.addEventListener("click", function () { goTo(currentIndex() + 1); });
+    }
+    dotsWrap.hidden = false;
+
+    var scrollTicking = false;
+    track.addEventListener("scroll", function () {
+      if (!scrollTicking) {
+        window.requestAnimationFrame(function () {
+          setActiveDot();
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
+    }, { passive: true });
+  });
+
   /* ---------- FAQ accordion ---------- */
   var faqItems = document.querySelectorAll(".faq-item");
   faqItems.forEach(function (item) {
