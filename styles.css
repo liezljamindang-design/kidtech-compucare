@@ -74,16 +74,17 @@ p{ margin:0; }
 }
 
 /* ============================================
-   Motion — scroll reveal
+   Motion — scroll reveal (3D)
    ============================================ */
 .reveal{
   opacity:0;
-  transform:translateY(28px);
+  transform:perspective(1000px) translateY(28px) rotateX(-10deg);
+  transform-origin:center bottom;
   transition:opacity 0.6s ease, transform 0.6s ease;
 }
 .reveal.is-revealed{
   opacity:1;
-  transform:translateY(0);
+  transform:perspective(1000px) translateY(0) rotateX(0deg);
 }
 
 /* ============================================
@@ -294,6 +295,7 @@ p{ margin:0; }
 .hero-coin-widget{
   justify-self:center;
   text-align:center;
+  perspective:1000px;
 }
 .coin-widget-label{
   font-family:var(--font-display);
@@ -318,7 +320,9 @@ p{ margin:0; }
   align-items:center;
   justify-content:flex-end;
   padding-bottom:26px;
-  transition:box-shadow 0.2s ease;
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:box-shadow 0.2s ease, transform 0.15s ease-out;
 }
 .coin-machine:hover{ box-shadow:0 20px 50px rgba(255,106,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.05); }
 
@@ -365,14 +369,18 @@ p{ margin:0; }
   align-items:center;
   justify-content:center;
   box-shadow:0 6px 14px rgba(0,0,0,0.4);
+  transform-style:preserve-3d;
   transition:transform 0.15s ease;
 }
-.coin-machine:hover .coin{ transform:translateY(-4px); }
-.coin.is-dropping{ animation:coinDrop 0.6s cubic-bezier(.55,0,.85,.35) forwards; }
+.coin-machine:hover .coin{ transform:translateZ(10px) translateY(-4px); }
+.coin.is-dropping{
+  animation:coinDrop 0.65s cubic-bezier(.55,0,.85,.35) forwards;
+}
 @keyframes coinDrop{
-  0%{ top:-46px; opacity:1; }
-  70%{ top:150px; opacity:1; }
-  100%{ top:150px; opacity:0; }
+  0%{ top:-46px; opacity:1; transform:translateZ(10px) rotateX(0deg) rotateY(0deg); }
+  55%{ transform:translateZ(4px) rotateX(360deg) rotateY(160deg); }
+  70%{ top:150px; opacity:1; transform:translateZ(0) rotateX(620deg) rotateY(280deg); }
+  100%{ top:150px; opacity:0; transform:translateZ(-6px) rotateX(720deg) rotateY(360deg); }
 }
 
 .coin-widget-hint{ margin-top:16px; font-size:13px; color:#9a9a9a; max-width:220px; margin-left:auto; margin-right:auto; }
@@ -388,6 +396,7 @@ p{ margin:0; }
   grid-template-columns:repeat(3, 1fr);
   gap:28px;
   margin-top:52px;
+  perspective:1400px;
 }
 .service-card{
   position:relative;
@@ -398,9 +407,14 @@ p{ margin:0; }
   display:flex;
   flex-direction:column;
   gap:12px;
-  transition:transform 0.2s ease, box-shadow 0.2s ease;
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:transform 0.15s ease-out, box-shadow 0.2s ease;
 }
 .service-card:hover{ transform:translateY(-6px); box-shadow:0 20px 40px rgba(17,17,17,0.14); }
+.service-card .btn,
+.service-card h3,
+.service-card .service-icon{ transform:translateZ(28px); }
 .service-card-featured{
   grid-column:span 3;
   background:var(--dark);
@@ -422,7 +436,7 @@ p{ margin:0; }
 
 .service-icon{ width:34px; height:34px; color:var(--orange); transition:transform 0.25s ease; }
 .service-icon svg{ width:100%; height:100%; }
-.service-card:hover .service-icon{ transform:scale(1.12) rotate(-4deg); }
+.service-card:hover .service-icon{ transform:translateZ(28px) scale(1.12) rotate(-4deg); }
 .service-tag{
   font-family:var(--font-display);
   font-size:11px;
@@ -502,17 +516,22 @@ p{ margin:0; }
   grid-template-columns:repeat(4, 1fr);
   gap:28px;
   margin-top:52px;
+  perspective:1200px;
 }
 .why-item{
   border:1px solid rgba(255,255,255,0.1);
   border-radius:var(--radius);
   padding:28px 22px;
   background:var(--dark-2);
-  transition:border-color 0.2s ease, transform 0.2s ease;
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:border-color 0.2s ease, transform 0.15s ease-out;
 }
 .why-item:hover{ border-color:var(--orange); transform:translateY(-4px); }
+.why-item .why-icon,
+.why-item h3{ transform:translateZ(22px); }
 .why-icon{ width:34px; height:34px; color:var(--orange); margin-bottom:18px; transition:transform 0.25s ease; }
-.why-item:hover .why-icon{ transform:scale(1.12) rotate(-4deg); }
+.why-item:hover .why-icon{ transform:translateZ(22px) scale(1.12) rotate(-4deg); }
 .why-item h3{ font-size:16px; margin-bottom:10px; }
 .why-item p{ font-size:13.5px; line-height:1.6; color:#b7b7b7; }
 
