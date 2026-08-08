@@ -176,29 +176,4 @@
 
     revealTargets.forEach(function (el) { revealObserver.observe(el); });
   }
-
-  /* ---------- Motion: 3D pointer tilt ---------- */
-  var supportsFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-  if (!prefersReducedMotion && supportsFinePointer) {
-    var tiltTargets = document.querySelectorAll(".service-card, .why-item, .coin-machine");
-
-    tiltTargets.forEach(function (el) {
-      var maxTilt = el.classList.contains("coin-machine") ? 10 : 7;
-
-      el.addEventListener("mousemove", function (e) {
-        var rect = el.getBoundingClientRect();
-        var px = (e.clientX - rect.left) / rect.width;  // 0 to 1 across the card
-        var py = (e.clientY - rect.top) / rect.height;  // 0 to 1 down the card
-        var rotateY = (px - 0.5) * (maxTilt * 2);
-        var rotateX = (0.5 - py) * (maxTilt * 2);
-        el.style.transform =
-          "perspective(1000px) rotateX(" + rotateX.toFixed(2) + "deg) rotateY(" + rotateY.toFixed(2) + "deg) translateY(-4px)";
-      });
-
-      el.addEventListener("mouseleave", function () {
-        el.style.transform = "";
-      });
-    });
-  }
 })();

@@ -148,10 +148,30 @@ p{ margin:0; }
   background:rgba(17,17,17,0.92);
   backdrop-filter:blur(8px);
   border-bottom:1px solid rgba(255,255,255,0.08);
+  overflow:hidden;
+}
+.site-header::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    repeating-linear-gradient(100deg,
+      rgba(255,106,0,0.09) 0px, rgba(255,106,0,0.09) 1px,
+      transparent 1px, transparent 44px),
+    linear-gradient(115deg, transparent 40%, rgba(255,149,0,0.12) 50%, transparent 60%);
+  background-size:480px 100%, 55% 100%;
+  animation:headerPan 20s linear infinite;
+  pointer-events:none;
+  z-index:0;
 }
 .header-inner{
+  position:relative; z-index:1;
   display:flex; align-items:center; justify-content:space-between;
   padding-top:12px; padding-bottom:12px;
+}
+@keyframes headerPan{
+  from{ background-position:0 0, -60% 0; }
+  to{ background-position:-480px 0, 160% 0; }
 }
 .brand{ display:flex; align-items:center; gap:10px; }
 .brand-mark{ width:40px; height:40px; object-fit:contain; }
