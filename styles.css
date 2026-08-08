@@ -145,27 +145,36 @@ p{ margin:0; }
    ============================================ */
 .site-header{
   position:sticky; top:0; z-index:50;
-  background:rgba(17,17,17,0.92);
-  backdrop-filter:blur(8px);
+  background:rgba(17,17,17,0.96);
   border-bottom:1px solid rgba(255,255,255,0.08);
   overflow:hidden;
 }
 .site-header::before{
   content:'';
   position:absolute;
-  inset:0;
+  top:0; left:-50%;
+  width:200%; height:100%;
   background-image:
     radial-gradient(circle, rgba(255,149,0,0.55) 1.3px, transparent 1.3px),
     linear-gradient(to right, rgba(255,106,0,0.10) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,106,0,0.10) 1px, transparent 1px),
-    linear-gradient(115deg, transparent 40%, rgba(255,149,0,0.10) 50%, transparent 60%);
-  background-size:34px 34px, 34px 34px, 34px 34px, 55% 100%;
-  background-position:0 0, 0 0, 0 0, -60% 0;
+    linear-gradient(to bottom, rgba(255,106,0,0.10) 1px, transparent 1px);
+  background-size:34px 34px, 34px 34px, 34px 34px;
   animation:headerPan 22s linear infinite;
   pointer-events:none;
   z-index:0;
   -webkit-mask-image:linear-gradient(to bottom, #000 0%, transparent 100%);
           mask-image:linear-gradient(to bottom, #000 0%, transparent 100%);
+}
+.site-header::after{
+  content:'';
+  position:absolute;
+  top:0; left:0; right:0; bottom:0;
+  background-image:linear-gradient(115deg, transparent 40%, rgba(255,149,0,0.10) 50%, transparent 60%);
+  background-size:55% 100%;
+  background-position:-60% 0;
+  animation:headerSweep 9s linear infinite;
+  pointer-events:none;
+  z-index:0;
 }
 .header-inner{
   position:relative; z-index:1;
@@ -173,8 +182,12 @@ p{ margin:0; }
   padding-top:12px; padding-bottom:12px;
 }
 @keyframes headerPan{
-  from{ background-position:0 0, 0 0, 0 0, -60% 0; }
-  to{ background-position:-136px -136px, -136px -136px, -136px -136px, 160% 0; }
+  from{ transform:translate3d(0, 0, 0); }
+  to{ transform:translate3d(-136px, -136px, 0); }
+}
+@keyframes headerSweep{
+  from{ background-position:-60% 0; }
+  to{ background-position:160% 0; }
 }
 .brand{ display:flex; align-items:center; gap:10px; }
 .brand-mark{ width:40px; height:40px; object-fit:contain; }
@@ -344,7 +357,6 @@ p{ margin:0; }
   justify-content:flex-end;
   padding-bottom:26px;
   transform-style:preserve-3d;
-  will-change:transform;
   transition:box-shadow 0.2s ease, transform 0.15s ease-out;
 }
 .coin-machine:hover{ box-shadow:0 20px 50px rgba(255,106,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.05); }
@@ -432,7 +444,6 @@ p{ margin:0; }
   gap:12px;
   overflow:hidden;
   transform-style:preserve-3d;
-  will-change:transform;
   transition:transform 0.15s ease-out, box-shadow 0.2s ease;
 }
 .service-card:hover{ transform:translateY(-6px); box-shadow:0 20px 40px rgba(17,17,17,0.14); }
@@ -659,7 +670,6 @@ p{ margin:0; }
   padding:28px 22px;
   background:var(--dark-2);
   transform-style:preserve-3d;
-  will-change:transform;
   transition:border-color 0.2s ease, transform 0.15s ease-out;
 }
 .why-item:hover{ border-color:var(--orange); transform:translateY(-4px); }
