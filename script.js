@@ -145,6 +145,46 @@
     }, { passive: true });
   });
 
+  /* ---------- Photo lightbox ---------- */
+  var lightbox = document.getElementById("lightbox");
+  var lightboxImg = document.getElementById("lightboxImg");
+  var lightboxClose = document.getElementById("lightboxClose");
+  var lastFocusedEl = null;
+
+  function openLightbox(src, alt) {
+    lastFocusedEl = document.activeElement;
+    lightboxImg.src = src;
+    lightboxImg.alt = alt || "";
+    lightbox.hidden = false;
+    document.body.style.overflow = "hidden";
+    lightboxClose.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.hidden = true;
+    lightboxImg.src = "";
+    document.body.style.overflow = "";
+    if (lastFocusedEl) lastFocusedEl.focus();
+  }
+
+  if (lightbox && lightboxImg && lightboxClose) {
+    document.querySelectorAll(".service-gallery-slide img").forEach(function (img) {
+      img.addEventListener("click", function () {
+        openLightbox(img.src, img.alt);
+      });
+    });
+
+    lightboxClose.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !lightbox.hidden) closeLightbox();
+    });
+  }
+
   /* ---------- FAQ accordion ---------- */
   var faqItems = document.querySelectorAll(".faq-item");
   faqItems.forEach(function (item) {
