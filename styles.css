@@ -610,26 +610,29 @@ p{ margin:0; }
 
 .featured-badge{
   position:absolute;
-  top:45px;
-  right:-60px;
+  top:44px;
+  right:-72px;
   z-index:5;
 
   background:var(--red);
   color:var(--white);
 
   font-family:var(--font-display);
-  font-size:23px;
+  font-size:22px;
   font-weight:700;
   line-height:1;
-  letter-spacing:0.06em;
+  letter-spacing:0.02em;
   text-transform:uppercase;
   white-space:nowrap;
 
-  padding:14px 83px;
+  width:280px;
+  height:54px;
 
   display:flex;
   align-items:center;
   justify-content:center;
+
+  padding:0;
 
   transform:rotate(45deg);
   transform-origin:center;
