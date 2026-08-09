@@ -968,3 +968,39 @@ p{ margin:0; }
   .lightbox-prev{ left:8px; }
   .lightbox-next{ right:8px; }
 }
+
+/* ============================================
+   Scroll performance improvements
+   ============================================ */
+
+/* Stop continuous decorative animations while scrolling */
+.site-header::before,
+.site-header::after,
+.hero-stripes,
+.hero-dots,
+.delivery-dots{
+  animation:none;
+}
+
+/* Reduce expensive blur rendering */
+.service-tag-badge,
+.gallery-arrow{
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
+
+/* Keep gallery rendering isolated */
+.service-gallery{
+  contain:layout paint;
+}
+
+/* Help browser render large sections more efficiently */
+.services,
+.why,
+.faq,
+.visit,
+.delivery,
+.final-cta{
+  content-visibility:auto;
+  contain-intrinsic-size:1px 800px;
+}
