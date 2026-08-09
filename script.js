@@ -435,35 +435,17 @@
 var siteAudio = document.getElementById("siteAudio");
 
 if (siteAudio) {
+  siteAudio.volume = 0.5;
 
-  siteAudio.volume = 0.45;
+  function playIntroAudio() {
+    siteAudio.play().catch(function () {
+      // Browser blocked playback
+    });
 
-  function tryPlayAudio() {
-    var playPromise = siteAudio.play();
-
-    if (playPromise !== undefined) {
-      playPromise.catch(function () {
-        /* Browser blocked autoplay.
-           First user interaction will try again. */
-      });
-    }
+    document.removeEventListener("click", playIntroAudio);
+    document.removeEventListener("touchstart", playIntroAudio);
   }
 
-  /* Try to play when page loads */
-  window.addEventListener("load", function () {
-    tryPlayAudio();
-  });
-
-  /* If autoplay is blocked, play on first click/tap */
-  function firstInteraction() {
-    tryPlayAudio();
-
-    document.removeEventListener("click", firstInteraction);
-    document.removeEventListener("touchstart", firstInteraction);
-  }
-
-  document.addEventListener("click", firstInteraction);
-  document.addEventListener("touchstart", firstInteraction, {
-    passive: true
-  });
+  document.addEventListener("click", playIntroAudio);
+  document.addEventListener("touchstart", playIntroAudio, { passive: true });
 }
