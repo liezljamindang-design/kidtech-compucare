@@ -1006,6 +1006,214 @@ p{ margin:0; }
   animation:none;
 }
 
+
+   #lightbox {
+  position: fixed !important;
+  inset: 0 !important;
+
+  width: 100vw !important;
+  height: 100vh !important;
+
+  z-index: 99999 !important;
+
+  background: rgba(0, 0, 0, 0.94) !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 40px !important;
+  margin: 0 !important;
+
+  overflow: hidden !important;
+}
+
+/* IMPORTANT: keep the lightbox completely hidden until clicked */
+#lightbox[hidden] {
+  display: none !important;
+}
+
+/* Enlarged photo */
+#lightboxImg {
+  display: block !important;
+
+  width: auto !important;
+  height: auto !important;
+
+  max-width: 90vw !important;
+  max-height: 85vh !important;
+
+  object-fit: contain !important;
+
+  margin: auto !important;
+
+  border-radius: 8px;
+
+  box-shadow: 0 20px 70px rgba(0,0,0,0.65);
+
+  transform-origin: center center;
+  touch-action: none;
+
+  cursor: zoom-in;
+
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Close button */
+#lightboxClose {
+  position: fixed !important;
+
+  top: 22px !important;
+  right: 26px !important;
+
+  width: 48px !important;
+  height: 48px !important;
+
+  border: 0 !important;
+  border-radius: 50% !important;
+
+  background: rgba(255,255,255,0.15) !important;
+  color: #ffffff !important;
+
+  font-size: 30px !important;
+  line-height: 1 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  cursor: pointer !important;
+
+  z-index: 100001 !important;
+}
+
+/* Previous / Next buttons */
+#lightboxPrev,
+#lightboxNext {
+  position: fixed !important;
+
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+
+  width: 52px !important;
+  height: 52px !important;
+
+  border: 0 !important;
+  border-radius: 50% !important;
+
+  background: rgba(255,255,255,0.15) !important;
+  color: #ffffff !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  cursor: pointer !important;
+
+  z-index: 100001 !important;
+}
+
+#lightboxPrev {
+  left: 20px !important;
+}
+
+#lightboxNext {
+  right: 20px !important;
+}
+
+/* Respect hidden state for arrows */
+#lightboxPrev[hidden],
+#lightboxNext[hidden] {
+  display: none !important;
+}
+
+/* Photo counter */
+#lightboxCounter {
+  position: fixed !important;
+
+  top: 25px !important;
+  left: 50% !important;
+
+  transform: translateX(-50%) !important;
+
+  margin: 0 !important;
+
+  color: #ffffff !important;
+
+  font-size: 13px !important;
+
+  z-index: 100001 !important;
+}
+
+#lightboxCounter[hidden] {
+  display: none !important;
+}
+
+/* Zoom instruction */
+#lightboxHint {
+  position: fixed !important;
+
+  bottom: 22px !important;
+  left: 50% !important;
+
+  transform: translateX(-50%) !important;
+
+  width: 100% !important;
+
+  margin: 0 !important;
+
+  text-align: center !important;
+
+  color: rgba(255,255,255,0.65) !important;
+
+  font-size: 11px !important;
+
+  pointer-events: none !important;
+
+  z-index: 100001 !important;
+}
+
+/* Zoom states */
+#lightboxImg.is-zoomed {
+  cursor: grab !important;
+}
+
+#lightboxImg.is-dragging {
+  cursor: grabbing !important;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+
+  #lightbox {
+    padding: 16px !important;
+  }
+
+  #lightboxImg {
+    max-width: 96vw !important;
+    max-height: 82vh !important;
+  }
+
+  #lightboxPrev,
+  #lightboxNext {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  #lightboxPrev {
+    left: 8px !important;
+  }
+
+  #lightboxNext {
+    right: 8px !important;
+  }
+
+  #lightboxClose {
+    top: 12px !important;
+    right: 12px !important;
+  }
+}
 /* Reduce expensive blur rendering */
 .service-tag-badge,
 .gallery-arrow{
