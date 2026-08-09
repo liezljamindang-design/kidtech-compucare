@@ -457,7 +457,11 @@ p{ margin:0; }
 }
 .service-card-featured .service-icon,
 .service-card-featured .service-tag{ color:var(--orange-light); }
-.service-card-featured .service-gallery{ flex-basis:100%; margin:-36px -36px 6px; height:340px; }
+.service-card-featured .service-gallery{
+  flex-basis:100%;
+  margin:-36px -36px 6px;
+  height:420px;
+}
 .service-card-featured h3{ color:var(--white); flex-basis:100%; }
 .service-card-featured p,
 .service-card-featured .service-specs li{ color:#cfcfcf; }
@@ -605,7 +609,9 @@ p{ margin:0; }
 .service-card .btn{ margin-top:auto; }
 
 .featured-badge{
-  position:absolute; top:18px; right:-38px;
+  position:absolute;
+  top:18px;
+  right:-30px;
   z-index:5;
   background:var(--red);
   color:var(--white);
@@ -613,7 +619,8 @@ p{ margin:0; }
   font-size:11px;
   letter-spacing:0.06em;
   text-transform:uppercase;
-  padding:6px 44px;
+  padding:6px 42px;
+  white-space:nowrap;
   transform:rotate(45deg);
   box-shadow:0 4px 10px rgba(0,0,0,0.25);
 }
