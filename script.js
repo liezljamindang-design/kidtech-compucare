@@ -439,13 +439,15 @@ if (siteAudio) {
 
   function playIntroAudio() {
     siteAudio.play().catch(function () {
-      // Browser blocked playback
+      console.log("Audio playback blocked.");
     });
 
     document.removeEventListener("click", playIntroAudio);
-    document.removeEventListener("touchstart", playIntroAudio);
+    document.removeEventListener("touchend", playIntroAudio);
+    document.removeEventListener("pointerup", playIntroAudio);
   }
 
   document.addEventListener("click", playIntroAudio);
-  document.addEventListener("touchstart", playIntroAudio, { passive: true });
+  document.addEventListener("touchend", playIntroAudio, { passive: true });
+  document.addEventListener("pointerup", playIntroAudio);
 }
