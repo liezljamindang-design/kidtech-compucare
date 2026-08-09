@@ -437,6 +437,13 @@ var siteAudio = document.getElementById("siteAudio");
 if (siteAudio) {
   siteAudio.volume = 0.5;
 
+  /* Try autoplay immediately */
+  window.addEventListener("load", function () {
+    siteAudio.play().catch(function () {
+      console.log("Autoplay blocked. Waiting for user interaction.");
+    });
+  });
+
   function playIntroAudio() {
     siteAudio.play().catch(function () {
       console.log("Audio playback blocked.");
