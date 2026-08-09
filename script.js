@@ -363,34 +363,7 @@
     document.body.classList.add("js-hero-animate");
   }
 
-  /* ---------- Motion: scroll parallax pan on hero background ---------- */
-  var heroSection = document.querySelector(".hero");
-  var heroStripesEl = document.querySelector(".hero-stripes");
-  var heroDotsEl = document.querySelector(".hero-dots");
-
-  if (!prefersReducedMotion && heroSection && heroStripesEl && heroDotsEl) {
-    var parallaxTicking = false;
-
-    function updateParallax() {
-      var rect = heroSection.getBoundingClientRect();
-      // Only compute while the hero is at least partly on screen.
-      if (rect.bottom > 0 && rect.top < window.innerHeight) {
-        var scrolled = -rect.top; // 0 when hero top is at viewport top, grows as you scroll past it
-        heroStripesEl.style.transform = "translateY(" + (scrolled * 0.18) + "px)";
-        heroDotsEl.style.transform = "translateY(" + (scrolled * -0.12) + "px)";
-      }
-      parallaxTicking = false;
-    }
-
-    window.addEventListener("scroll", function () {
-      if (!parallaxTicking) {
-        window.requestAnimationFrame(updateParallax);
-        parallaxTicking = true;
-      }
-    }, { passive: true });
-
-    updateParallax();
-  }
+ 
 
   /* ---------- Motion: scroll-reveal ---------- */
   var revealTargets = document.querySelectorAll(
