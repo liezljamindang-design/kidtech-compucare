@@ -610,13 +610,13 @@ p{ margin:0; }
 
 .featured-badge{
   position:absolute;
-  top:18px;
-  right:-28px;
+  top:26px;
+  right:-30px;
   z-index:5;
   background:var(--red);
   color:var(--white);
   font-family:var(--font-display);
-  font-size:11px;
+  font-size:13px;
   letter-spacing:0.06em;
   text-transform:uppercase;
   padding:6px 42px;
@@ -861,7 +861,7 @@ p{ margin:0; }
   .service-card-featured{ grid-column:span 1; }
   .why-grid{ grid-template-columns:1fr; }
   .visit-details{ grid-template-columns:1fr; }
-  .featured-badge{ right:-46px; top:16px; }
+  .featured-badge{ right:-40px; top:24px; }
 }
 
 /* ============================================
