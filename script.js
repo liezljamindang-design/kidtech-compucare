@@ -145,11 +145,17 @@
     }, { passive: true });
   });
 
-  /* ---------- Photo lightbox (with zoom + pan) ---------- */
+  /* ---------- Photo lightbox (with zoom + pan + multi-photo nav) ---------- */
   var lightbox = document.getElementById("lightbox");
   var lightboxImg = document.getElementById("lightboxImg");
   var lightboxClose = document.getElementById("lightboxClose");
+  var lightboxPrev = document.getElementById("lightboxPrev");
+  var lightboxNext = document.getElementById("lightboxNext");
+  var lightboxCounter = document.getElementById("lightboxCounter");
   var lastFocusedEl = null;
+
+  var currentGallery = []; // array of { src, alt } for the open gallery
+  var currentIndex = 0;
 
   var MIN_SCALE = 1;
   var MAX_SCALE = 4;
@@ -192,11 +198,28 @@
     applyZoomTransform();
   }
 
-  function openLightbox(src, alt) {
-    lastFocusedEl = document.activeElement;
-    lightboxImg.src = src;
-    lightboxImg.alt = alt || "";
+  function showIndex(index) {
+    currentIndex = (index + currentGallery.length) % currentGallery.length;
+    var item = currentGallery[currentIndex];
+    lightboxImg.src = item.src;
+    lightboxImg.alt = item.alt || "";
     resetZoom();
+
+    var hasMultiple = currentGallery.length > 1;
+    lightboxPrev.hidden = !hasMultiple;
+    lightboxNext.hidden = !hasMultiple;
+    if (hasMultiple) {
+      lightboxCounter.hidden = false;
+      lightboxCounter.textContent = (currentIndex + 1) + " / " + currentGallery.length;
+    } else {
+      lightboxCounter.hidden = true;
+    }
+  }
+
+  function openLightbox(galleryImages, startIndex) {
+    lastFocusedEl = document.activeElement;
+    currentGallery = galleryImages;
+    showIndex(startIndex);
     lightbox.hidden = false;
     document.body.style.overflow = "hidden";
     lightboxClose.focus();
@@ -210,21 +233,32 @@
     if (lastFocusedEl) lastFocusedEl.focus();
   }
 
-  if (lightbox && lightboxImg && lightboxClose) {
-    document.querySelectorAll(".service-gallery-slide img").forEach(function (img) {
-      img.addEventListener("click", function () {
-        openLightbox(img.src, img.alt);
+  if (lightbox && lightboxImg && lightboxClose && lightboxPrev && lightboxNext) {
+    document.querySelectorAll(".service-gallery").forEach(function (gallery) {
+      var imgs = Array.prototype.slice.call(gallery.querySelectorAll(".service-gallery-slide img"));
+      if (!imgs.length) return;
+      var galleryImages = imgs.map(function (img) { return { src: img.src, alt: img.alt }; });
+
+      imgs.forEach(function (img, i) {
+        img.addEventListener("click", function () {
+          openLightbox(galleryImages, i);
+        });
       });
     });
 
     lightboxClose.addEventListener("click", closeLightbox);
+    lightboxPrev.addEventListener("click", function () { showIndex(currentIndex - 1); });
+    lightboxNext.addEventListener("click", function () { showIndex(currentIndex + 1); });
 
     lightbox.addEventListener("click", function (e) {
       if (e.target === lightbox) closeLightbox();
     });
 
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !lightbox.hidden) closeLightbox();
+      if (lightbox.hidden) return;
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") showIndex(currentIndex - 1);
+      if (e.key === "ArrowRight") showIndex(currentIndex + 1);
     });
 
     // Double-click / double-tap to toggle zoom
