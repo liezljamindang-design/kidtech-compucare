@@ -1014,11 +1014,31 @@ p{ margin:0; }
 
   /* Center the hero content */
   .hero-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.hero-copy {
+  width: 100%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-copy .hero-actions {
+  justify-content: center;
+}
+
+.hero-copy .hero-stats {
+  justify-content: center;
+}
+
+/* Center the Piso-Net demo section */
+.hero-demo {
+
+   
+   
   /* Center the Piso-Net demo section */
   .hero-demo {
     width: 100%;
