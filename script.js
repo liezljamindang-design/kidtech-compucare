@@ -427,3 +427,43 @@
     revealTargets.forEach(function (el) { revealObserver.observe(el); });
   }
 })();
+
+/* ============================================
+   SITE INTRO AUDIO
+   ============================================ */
+
+var siteAudio = document.getElementById("siteAudio");
+
+if (siteAudio) {
+
+  siteAudio.volume = 0.45;
+
+  function tryPlayAudio() {
+    var playPromise = siteAudio.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch(function () {
+        /* Browser blocked autoplay.
+           First user interaction will try again. */
+      });
+    }
+  }
+
+  /* Try to play when page loads */
+  window.addEventListener("load", function () {
+    tryPlayAudio();
+  });
+
+  /* If autoplay is blocked, play on first click/tap */
+  function firstInteraction() {
+    tryPlayAudio();
+
+    document.removeEventListener("click", firstInteraction);
+    document.removeEventListener("touchstart", firstInteraction);
+  }
+
+  document.addEventListener("click", firstInteraction);
+  document.addEventListener("touchstart", firstInteraction, {
+    passive: true
+  });
+}
