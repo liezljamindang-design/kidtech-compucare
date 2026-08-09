@@ -611,7 +611,7 @@ p{ margin:0; }
 .featured-badge{
   position:absolute;
   top:48px;
-  right:-58px;
+  right:-60px;
   z-index:5;
 
   background:var(--red);
@@ -625,7 +625,7 @@ p{ margin:0; }
   text-transform:uppercase;
   white-space:nowrap;
 
-  padding:14px 80px;
+  padding:14px 83px;
 
   display:flex;
   align-items:center;
