@@ -610,22 +610,22 @@ p{ margin:0; }
 
 .featured-badge{
   position:absolute;
-  top:36px;
-  right:-18px;
+  top:38px;
+  right:-20px;
   z-index:5;
 
   background:var(--red);
   color:var(--white);
 
   font-family:var(--font-display);
-  font-size:15px;
+  font-size:18px;
   font-weight:700;
   line-height:1;
-  letter-spacing:0.04em;
+  letter-spacing:0.03em;
   text-transform:uppercase;
   white-space:nowrap;
 
-  padding:9px 38px;
+  padding:10px 42px;
 
   display:flex;
   align-items:center;
@@ -1019,4 +1019,42 @@ p{ margin:0; }
 .final-cta{
   content-visibility:auto;
   contain-intrinsic-size:1px 800px;
+}
+
+/* =========================================
+   HEADER + HERO ENTRANCE ANIMATIONS
+   ========================================= */
+
+@keyframes headerSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header entrance */
+header {
+  animation: headerSlideDown 0.7s ease-out both;
+}
+
+/* Hero entrance */
+.hero {
+  animation: heroFadeUp 0.9s ease-out 0.15s both;
 }
